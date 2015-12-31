@@ -139,7 +139,7 @@ print "accounts ("+str(len(accounts))+")..."
 for account in sorted(accounts):
  print " "+clean_account_name(account)+": "+locale.currency(accounts[account], grouping=True)
 print ""
-print "categories ("+str(len(categories))+")..."
+print "categories (macro) ("+str(len(categories))+")..."
 for category in sorted(categories):
  print " "+category+": "+locale.currency(categories[category], grouping=True)
 print ""
