@@ -42,6 +42,7 @@ def clean_account_name(name):
 total_positive = 0
 total_negative = 0
 warnings = []
+skipped = []
 accounts = {}
 categories = {}
 categories_micro = {}
@@ -62,7 +63,8 @@ with open(args.file) as f:
    account = row[10]
    #
    if status != yaml["status_to_analyze"]:
-   	continue
+    skipped.append(status+" : "+description+" : "+str(amount))
+    continue
    else:
    	# add to totals
     if amount < 0:
@@ -121,6 +123,10 @@ if "income" in categories:
  print " income: "+locale.currency(categories["income"], grouping=True)
  print " percentage of income: "+str(math.ceil((total/categories["income"])*10000)/100)+"%"
 
+print ""
+print "skipped..."
+for v in sorted(skipped):
+ print v
 print ""
 print "warnings..."
 if len(warnings) > 0:
