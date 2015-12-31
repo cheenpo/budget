@@ -124,26 +124,26 @@ if "income" in categories:
  print " percentage of income: "+str(math.ceil((total/categories["income"])*10000)/100)+"%"
 
 print ""
-print "skipped..."
+print "skipped ("+str(len(skipped))+")..."
 for v in sorted(skipped):
  print v
 print ""
-print "warnings..."
+print "warnings ("+str(len(warnings))+")..."
 if len(warnings) > 0:
  for warning in warnings:
   print warning
 else:
  print "none"
 print ""
-print "accounts..."
+print "accounts ("+str(len(accounts))+")..."
 for account in sorted(accounts):
  print " "+clean_account_name(account)+": "+locale.currency(accounts[account], grouping=True)
 print ""
-print "categories..."
+print "categories ("+str(len(categories))+")..."
 for category in sorted(categories):
  print " "+category+": "+locale.currency(categories[category], grouping=True)
 print ""
-print "categories (micro)..."
+print "categories (micro) ("+str(len(categories_micro))+")..."
 for category in sorted(categories_micro):
  print " "+category+": "+locale.currency(categories_micro[category], grouping=True)
 ##
