@@ -39,7 +39,8 @@ def clean_account_name(name):
 ##
 
 ##
-total = 0
+total_positive = 0
+total_negative = 0
 warnings = []
 accounts = {}
 categories = {}
@@ -63,8 +64,11 @@ with open(args.file) as f:
    if status != yaml["status_to_analyze"]:
    	continue
    else:
-   	# add to total
-    total += amount
+   	# add to totals
+    if amount < 0:
+     total_negative += amount
+    else:
+     total_positive += amount
 
     # add to account
     if account in accounts:
@@ -92,6 +96,7 @@ with open(args.file) as f:
      unknown_details.append(description)
     if abs(amount) > yaml["global_warning_amount"]:
      warnings.append(category+ " above global_warning_amount: abs("+str(amount)+") > "+str(yaml["global_warning_amount"])+" : "+description)
+    debug("category: "+category)
 
 
 ## see if there are any warnings
@@ -106,7 +111,16 @@ for category in categories_micro:
 
 ##
 print "summary..."
+print " total_positive: "+locale.currency(total_positive, grouping=True)
+print " total_negative: "+locale.currency(total_negative, grouping=True)
+total = (total_positive+total_negative)
 print " total: "+locale.currency(total, grouping=True)
+if "income" in categories:
+ import math
+ print ""
+ print " income: "+locale.currency(categories["income"], grouping=True)
+ print " percentage of income: "+str(math.ceil((total/categories["income"])*10000)/100)+"%"
+
 print ""
 print "warnings..."
 if len(warnings) > 0:
