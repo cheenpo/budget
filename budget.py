@@ -130,7 +130,7 @@ for v in sorted(skipped):
 print ""
 print "warnings ("+str(len(warnings))+")..."
 if len(warnings) > 0:
- for warning in warnings:
+ for warning in sorted(warnings):
   print warning
 else:
  print "none"
