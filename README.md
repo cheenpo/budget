@@ -1,5 +1,7 @@
 # budget
 
+scrapped and focusing on https://github.com/cheenpo/budget-ng
+
 so after kicking mint.com to the curb and trying to go cold turkey on being ocd about money stuff... I tinkered with this.
 
 ## the idea
